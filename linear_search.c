@@ -1,8 +1,8 @@
 #include <stdio.h>
-int linear_search(int arr[], int value) {
-    int len = (int) (sizeof(arr) / sizeof(arr[0]));
-    for (int i = 0; i <= len; i++) {
-        if (arr[i] == value) {
+int linear_search(int arr[], int needle, int n)
+{
+    for (int i = 0; i <= n; i++) {
+        if (arr[i] == needle) {
             return i;
         }
     }
@@ -12,8 +12,9 @@ int linear_search(int arr[], int value) {
 
 int main(int argc, char *argv[])
 {
-    int arr[4] = {1, 2, 3, 4};
-    printf("%d", linear_search(arr, 3));
+    int arr[5] = {2, 1, 3, 8, 20};
+    int n = (int) (sizeof(arr) / sizeof(arr[0]));
+    printf("%d", linear_search(arr, 3, n));
     return 0;
 }
 
