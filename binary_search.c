@@ -23,10 +23,9 @@ int binary_search(int arr[], int needle, int n)
 int main(int argc, char *argv[])
 {
     int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 20, 30};
-    int needle = 4;
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    printf("%d", binary_search(arr, 4, n));
+    printf("%d", binary_search(arr, 0, n));
 
     return 0;
 }
