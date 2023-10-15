@@ -1,4 +1,4 @@
-package main
+// package main
 
 import (
 	"errors"
@@ -144,7 +144,15 @@ func (li *LinkedList) removeNode(node *Node) *Node {
 func main() {
     list := LinkedList{}
     list.Prepend(5)
-    fmt.Printf("%d\n", list.head.Value)
-    fmt.Printf("%d\n", list.tail.Value)
+    list.Prepend(10)
+    list.InsertAt(1, 1)
+    fmt.Printf("%+v\n", list)
+    fmt.Printf("%+v\n", list.head.Value)
+    fmt.Printf("%+v\n", list.tail.Value)
+    val, err := list.Get(1)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Print(val)
 }
 
