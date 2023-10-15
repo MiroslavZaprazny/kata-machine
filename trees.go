@@ -58,6 +58,20 @@ func bfs(head *BinaryNode, value interface{}) bool {
     return false
 }
 
+func compare(a *BinaryNode, b *BinaryNode) bool {
+    if a == nil && b == nil {
+        return true
+    }
+    if a == nil || b == nil {
+        return false
+    }
+    if a.Value != b.Value {
+        return false
+    }
+
+    return compare(a.Left, b.Left) && compare(a.Right, b.Right)
+}
+
 func main() {
     tree := &BinaryNode{
         Value: 20,
@@ -89,8 +103,38 @@ func main() {
         },
     }
 
+    tree2 := &BinaryNode{
+        Value: 20,
+        Right: &BinaryNode{
+            Value: 50,
+            Right: &BinaryNode{
+                Value: 30,
+                Right: nil,
+                Left: nil,
+            },
+            Left: &BinaryNode{
+                Value: 100,
+                Right: nil,
+                Left: nil,
+            },
+        },
+        Left: &BinaryNode{
+            Value: 200,
+            Right: &BinaryNode{
+                Value: 300,
+                Right: nil,
+                Left: nil,
+            },
+            Left: &BinaryNode{
+                Value: 600,
+                Right: nil,
+                Left: nil,
+            },
+        },
+    }
+
     path := pre_order_walk(tree)
     fmt.Println(bfs(tree, 200))
-
-    fmt.Print(path)
+    fmt.Println(path)
+    fmt.Println(compare(tree, tree2))
 }
