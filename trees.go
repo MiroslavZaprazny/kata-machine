@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type BinaryNode struct {
     Value interface{}
@@ -56,6 +59,22 @@ func bfs(head *BinaryNode, value interface{}) bool {
     }
 
     return false
+}
+
+func dfs(head *BinaryNode, value interface{}) bool {
+    if head == nil {
+        return false
+    }
+
+    if head.Value == value {
+        return true
+    }
+
+    if head.Value.(int) < value.(int) {
+        return dfs(head.Right, value)
+    }
+
+    return dfs(head.Left, value)
 }
 
 func compare(a *BinaryNode, b *BinaryNode) bool {
