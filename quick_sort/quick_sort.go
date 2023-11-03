@@ -1,14 +1,12 @@
-// package main
+package quick_sort
 
-import "fmt"
-
-func quick_sort(arr *[8]int, lo int, hi int) {
+func Quick_sort(arr *[8]int, lo int, hi int) {
     if lo >= hi {
         return
     }
     pivot := partition(arr, lo, hi)
-    quick_sort(arr, lo, pivot - 1)
-    quick_sort(arr, pivot + 1, hi)
+    Quick_sort(arr, lo, pivot - 1)
+    Quick_sort(arr, pivot + 1, hi)
 }
 
 func partition(arr *[8]int, lo int, hi int) int {
@@ -31,8 +29,3 @@ func partition(arr *[8]int, lo int, hi int) int {
     return idx
 }
 
-func main() {
-    input := [8]int {9, 3, 7, 4, 69, 6, 420, 45}
-    quick_sort(&input, 0, len(input) - 1)
-    fmt.Println(input);
-}

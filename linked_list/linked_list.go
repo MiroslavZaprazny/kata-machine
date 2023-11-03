@@ -1,4 +1,4 @@
-// package main
+package linked_list
 
 import (
 	"errors"
@@ -13,37 +13,37 @@ type Node struct {
 
 type LinkedList struct {
     length int
-    head *Node
-    tail *Node
+    Head *Node
+    Tail *Node
 }
 
 func (li *LinkedList) Prepend(item interface{}) {
     node := &Node{Value: item}
     li.length++
 
-    if li.head == nil {
-        li.head = node
-        li.tail = node
+    if li.Head == nil {
+        li.Head = node
+        li.Tail = node
         return
     }
     
-    node.Next = li.head
-    li.head.Prev = node
-    li.head = node
+    node.Next = li.Head
+    li.Head.Prev = node
+    li.Head = node
 }
 
 func (li *LinkedList) Append(item interface{}) {
     li.length++
     node := &Node{Value: item}
-    if li.tail == nil {
-        li.tail = node
-        li.head = node
+    if li.Tail == nil {
+        li.Tail = node
+        li.Head = node
         return
     }
 
-    node.Prev = li.tail
-    li.tail.Next = node
-    li.tail = node
+    node.Prev = li.Tail
+    li.Tail.Next = node
+    li.Tail = node
 }
 
 func (li *LinkedList) InsertAt(item interface{}, idx int) error {
@@ -54,7 +54,7 @@ func (li *LinkedList) InsertAt(item interface{}, idx int) error {
         return nil
     }
 
-    curr := li.head
+    curr := li.Head
     for i := 0; i < idx; i++ {
         curr = curr.Next
     } 
@@ -71,7 +71,7 @@ func (li *LinkedList) InsertAt(item interface{}, idx int) error {
 }
 
 func (li *LinkedList) Remove(item interface{}) (interface{}, error) {
-    curr := li.head
+    curr := li.Head
     for i := 0; i < li.length; i++ {
         if curr.Value == item {
             break;
@@ -108,7 +108,7 @@ func (li *LinkedList) RemoveAt(idx int) (interface{}, error) {
 }
 
 func (li *LinkedList) getAt(idx int) (*Node, error) {
-    curr := li.head
+    curr := li.Head
     for i := 0; i < idx; i ++ {
         curr = curr.Next
     }
@@ -122,8 +122,8 @@ func (li *LinkedList) getAt(idx int) (*Node, error) {
 func (li *LinkedList) removeNode(node *Node) *Node {
     li.length--
     if li.length == 0 {
-        li.head = nil
-        li.tail = nil
+        li.Head = nil
+        li.Tail = nil
 
         return node
     }
@@ -139,20 +139,5 @@ func (li *LinkedList) removeNode(node *Node) *Node {
     node.Prev = nil
 
     return node
-}
-
-func main() {
-    list := LinkedList{}
-    list.Prepend(5)
-    list.Prepend(10)
-    list.InsertAt(1, 1)
-    fmt.Printf("%+v\n", list)
-    fmt.Printf("%+v\n", list.head.Value)
-    fmt.Printf("%+v\n", list.tail.Value)
-    val, err := list.Get(1)
-    if err != nil {
-        panic(err)
-    }
-    fmt.Print(val)
 }
 
