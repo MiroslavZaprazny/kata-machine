@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"kata-machine/linked_list"
+	"kata-machine/lru_cache"
 	"kata-machine/quick_sort"
 	"kata-machine/trees"
 )
@@ -89,4 +90,23 @@ func main() {
         panic(err)
     }
     fmt.Print(val)
+
+    fmt.Println("lru")
+    lru := lru_cache.New(2)
+    lru.Put(1,1)
+    lru.Put(2,2)
+    value, err := lru.Get(1)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+    fmt.Println(value)
+    value, err = lru.Get(2)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+    fmt.Println(value)
+    value, err = lru.Get(5)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
 }
